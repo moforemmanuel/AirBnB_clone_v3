@@ -8,11 +8,13 @@ from models import storage
 
 @app_views.route("/status", strict_slashes=False)
 def status():
+    """return api status"""
     return jsonify(status="OK")
 
 
 @app_views.route("/stats", strict_slashes=False)
 def stats():
+    """return models stats"""
     return jsonify(
         amenities=storage.count('Amenity'),
         cities=storage.count('City'),
