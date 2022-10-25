@@ -9,6 +9,7 @@ from models.state import State
 
 @app_views.route("/states", methods=['GET', 'POST'], strict_slashes=False)
 def states():
+    """router handler for states get and post"""
     raw_states = storage.all('State')
     states_objs = [state_obj.to_dict() for state_obj in raw_states.values()]
 
@@ -25,7 +26,7 @@ def states():
             if body.get('name') is None:
                 abort(400, 'Missing name')
             else:
-                print(body)
+                # print(body)
                 new_state = State(**body)
                 new_state.save()
                 return make_response(jsonify(new_state.to_dict()), 201)
@@ -34,6 +35,7 @@ def states():
 @app_views.route("/states/<state_id>", methods=['GET', 'DELETE', 'PUT'],
                  strict_slashes=False)
 def state(state_id):
+    """router handler for states instance get, put and delete"""
     state_instance = storage.get(State, state_id)
     if state_instance is None:
         abort(404)
