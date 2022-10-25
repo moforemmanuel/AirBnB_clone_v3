@@ -8,7 +8,8 @@ from models.state import State
 from models.city import City
 
 
-@app_views.route("/states/<state_id>/cities", methods=['GET', 'POST'], strict_slashes=False)
+@app_views.route("/states/<state_id>/cities",
+                 methods=['GET', 'POST'], strict_slashes=False)
 def cities(state_id):
     """router handler for cities get and post"""
     raw_cities = storage.all(City)
