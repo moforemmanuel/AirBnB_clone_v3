@@ -42,7 +42,7 @@ def state(state_id):
             return jsonify(state_instance.to_dict())
         if request.method == 'DELETE':
             storage.delete(state_instance)
-            return make_response(jsonify({}), 200)
+            return make_response(jsonify(), 200)
         if request.method == 'PUT':
             if request.headers['Content-Type'] != 'application/json':
                 abort(400, 'Not a JSON')
