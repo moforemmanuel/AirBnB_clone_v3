@@ -62,7 +62,8 @@ def city(city_id):
             else:
                 body = request.get_json()
                 for key, value in body.items():
-                    if key not in ('id', 'created_at', 'updated_at'):
+                    if key not in ('id', 'created_at', 'updated_at',
+                                   'state_id'):
                         setattr(city_instance, key, value)
                 storage.save()
             return make_response(jsonify(city_instance.to_dict()), 200)
