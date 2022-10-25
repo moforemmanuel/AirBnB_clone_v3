@@ -22,4 +22,3 @@ if __name__ == '__main__':
         port=getenv('HBNB_API_PORT', default=5000),
         threaded=True
     )
-
