@@ -42,7 +42,8 @@ def state(state_id):
             return jsonify(state_instance.to_dict())
         if request.method == 'DELETE':
             storage.delete(state_instance)
-            return make_response(jsonify(), 200)
+            storage.save()
+            return make_response(jsonify({}), 200)
         if request.method == 'PUT':
             if request.headers['Content-Type'] != 'application/json':
                 abort(400, 'Not a JSON')
@@ -51,4 +52,5 @@ def state(state_id):
                 for key, value in body.items():
                     if key not in ('id', 'created_at', 'updated_at'):
                         setattr(state_instance, key, value)
+                storage.save()
             return make_response(jsonify(state_instance.to_dict()), 200)
