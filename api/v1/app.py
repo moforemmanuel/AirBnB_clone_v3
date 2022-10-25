@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """Start of API"""
 
-from flask import Flask, jsonify
+from flask import Flask, jsonify, make_response
 from models import storage
 from api.v1.views import app_views
 from os import getenv
@@ -11,9 +11,9 @@ app.register_blueprint(app_views)
 
 
 @app.errorhandler(404)
-def not_found(self):
+def not_found(error):
     """Not found handler"""
-    return jsonify(error="Not found")
+    return make_response(jsonify(error="Not found"), 404)
 
 
 @app.teardown_appcontext
