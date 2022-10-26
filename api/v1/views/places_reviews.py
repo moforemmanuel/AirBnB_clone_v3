@@ -36,6 +36,8 @@ def reviews(place_id):
             elif body.get('text') is None:
                 abort(400, 'Missing text')
             else:
+                if storage.get('User', body.get('user_id')) is None:
+                    abort(404)
                 # print(body)
                 body['place_id'] = place_id
                 new_review = Review(**body)
