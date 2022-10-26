@@ -33,7 +33,7 @@ def reviews(place_id):
             body = request.get_json()
             if body.get('user_id') is None:
                 abort(400, 'Missing user_id')
-            elif body.get('test') is None:
+            elif body.get('text') is None:
                 abort(400, 'Missing text')
             else:
                 # print(body)
